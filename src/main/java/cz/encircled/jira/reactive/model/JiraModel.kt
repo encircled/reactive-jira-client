@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonProperty
 
 
-data class JiraIssue(val key: String, val fields: Fields = Fields())
+data class Issue(val key: String, val fields: Fields = Fields())
 
 data class Fields(
         val description: String? = null,
@@ -28,12 +28,12 @@ data class Fields(
 
 data class JiraFilter(val jql: String, val name: String)
 
-data class IssueLink(val outwardIssue: JiraIssue?, val inwardIssue: JiraIssue?)
+data class IssueLink(val outwardIssue: Issue?, val inwardIssue: Issue?)
 
 data class Status(val name: String, val statusCategory: StatusCategory)
 
 data class StatusCategory(val key: String)
 
-data class SearchResult(val issues: List<JiraIssue>) {
+data class SearchResult(val issues: List<Issue>) {
     var total: Long = 0
 }

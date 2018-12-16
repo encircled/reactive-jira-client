@@ -2,8 +2,6 @@ package cz.encircled.jira.reactive.model
 
 import com.fasterxml.jackson.annotation.JsonProperty
 
-data class RapidBoard(val id: Int)
-
 data class RapidBoardsSprints(
         val sprints: List<Sprint>
 )

@@ -9,7 +9,7 @@ class IntegrationTest {
     fun testGetIssue() {
         StepVerifier.create(
                 client().getIssue("TRANS-1305", listOf("status", "summary", "description", "issuelinks")))
-                .expectNext(JiraIssue("TRANS-1305", Fields(
+                .expectNext(Issue("TRANS-1305", Fields(
                         summary = "Language Pack Upload Request",
                         description = null,
                         status = Status("Resolved", StatusCategory("done")),
@@ -31,8 +31,8 @@ class IntegrationTest {
     fun testSearchIssues() {
         StepVerifier.create(client().searchIssues("project = 10240 AND issuetype = 1 ORDER BY key DESC", listOf("summary"), 2))
                 .expectNext(SearchResult(listOf(
-                        JiraIssue("JRASERVER-68588", Fields(summary = "Jira incorrectly sorts options from Select List custom fields with multiple contexts")),
-                        JiraIssue("JRASERVER-68585", Fields(summary = "Created and Resolved gadget interval is broken"))
+                        Issue("JRASERVER-68588", Fields(summary = "Jira incorrectly sorts options from Select List custom fields with multiple contexts")),
+                        Issue("JRASERVER-68585", Fields(summary = "Created and Resolved gadget interval is broken"))
                 )))
                 .verifyComplete()
     }

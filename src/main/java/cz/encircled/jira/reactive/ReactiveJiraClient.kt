@@ -28,12 +28,12 @@ class ReactiveJiraClient(
         client = builder.build()
     }
 
-    fun getIssue(key: String, includedFields: List<String> = listOf()): Mono<JiraIssue> {
+    fun getIssue(key: String, includedFields: List<String> = listOf()): Mono<Issue> {
         val fields = includedFields.joinToString(",")
         return client.get()
                 .uri("/api/latest/issue/$key?fields=$fields")
                 .retrieve()
-                .bodyToMono(JiraIssue::class.java)
+                .bodyToMono(Issue::class.java)
     }
 
     fun getFilter(id: Int): Mono<JiraFilter> {
