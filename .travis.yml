@@ -4,4 +4,4 @@ install: mvn clean dependency:resolve
 script: mvn test
 
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
+  - bash <(curl -s https://codecov.io/bash) -t 80e505e7-c9db-4d18-8126-52dd46607e15
