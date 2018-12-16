@@ -80,18 +80,3 @@ class ReactiveJiraClient(
     }
 
 }
-
-fun main() {
-    ReactiveJiraClient("https://jira.homecredit.net/jira", "", "")
-//            .getIssue("PIF-1813", listOf("customfield_10806", "status", "summary", "description", "issuelinks"))
-            .getActiveSprints(44)
-            .doOnError {
-                print(it)
-            }
-            .collectList()
-            .subscribe {
-                println(it)
-            }
-
-    Thread.sleep(100000)
-}
