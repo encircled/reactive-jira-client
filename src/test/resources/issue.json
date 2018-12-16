@@ -1,0 +1,173 @@
+{
+  "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+  "id": "841327",
+  "self": "https://jira.com/jira/rest/api/latest/issue/841327",
+  "key": "PIF-1813",
+  "fields": {
+    "customfield_21400": "<a href=\"https://jira.com/jira/issues/?jql=Project = TCN and issuetype = Defect and parent = PIF-1813\">Defects</a> (there are no linked tests/test executions for this issue)",
+    "resolution": null,
+    "lastViewed": "2018-12-13T20:07:39.918+0100",
+    "customfield_12002": 5032343.0,
+    "labels": [],
+    "aggregatetimeoriginalestimate": null,
+    "issuelinks": [],
+    "assignee": {
+      "self": "https://jira.com/jira/rest/api/2/user?username=Some.One",
+      "name": "Some.One",
+      "key": "one",
+      "emailAddress": "some.one@mail.com",
+      "avatarUrls": {
+        "48x48": "https://jira.com/jira/secure/useravatar?avatarId=10232",
+        "24x24": "https://jira.com/jira/secure/useravatar?size=small&avatarId=10232",
+        "16x16": "https://jira.com/jira/secure/useravatar?size=xsmall&avatarId=10232",
+        "32x32": "https://jira.com/jira/secure/useravatar?size=medium&avatarId=10232"
+      },
+      "displayName": "One Some",
+      "active": true,
+      "timeZone": "Europe/Prague"
+    },
+    "components": [
+      {
+        "self": "https://jira.com/jira/rest/api/2/component/22190",
+        "id": "22190",
+        "name": "Core"
+      }
+    ],
+    "subtasks": [],
+    "reporter": {
+      "self": "https://jira.com/jira/rest/api/2/user?username=Some.One",
+      "name": "Some.One",
+      "key": "some",
+      "emailAddress": "some.one@mail.com",
+      "avatarUrls": {
+        "48x48": "https://jira.com/jira/secure/useravatar?avatarId=10232",
+        "24x24": "https://jira.com/jira/secure/useravatar?size=small&avatarId=10232",
+        "16x16": "https://jira.com/jira/secure/useravatar?size=xsmall&avatarId=10232",
+        "32x32": "https://jira.com/jira/secure/useravatar?size=medium&avatarId=10232"
+      },
+      "displayName": "Some One",
+      "active": true,
+      "timeZone": "Europe/Prague"
+    },
+    "progress": {
+      "progress": 0,
+      "total": 0
+    },
+    "worklog": {
+      "startAt": 0,
+      "maxResults": 20,
+      "total": 0,
+      "worklogs": []
+    },
+    "issuetype": {
+      "self": "https://jira.com/jira/rest/api/2/issuetype/10001",
+      "id": "10001",
+      "description": "Created by JIRA Software - do not edit or delete. Issue type for a user story.",
+      "iconUrl": "https://jira.com/jira/secure/viewavatar?size=xsmall&avatarId=17725&avatarType=issuetype",
+      "name": "Story",
+      "subtask": false,
+      "avatarId": 17725
+    },
+    "project": {
+      "self": "https://jira.com/jira/rest/api/2/project/11323",
+      "id": "11323",
+      "key": "PIF",
+      "name": "PIF",
+      "avatarUrls": {
+        "48x48": "https://jira.com/jira/secure/projectavatar?pid=11323&avatarId=10011",
+        "24x24": "https://jira.com/jira/secure/projectavatar?size=small&pid=11323&avatarId=10011",
+        "16x16": "https://jira.com/jira/secure/projectavatar?size=xsmall&pid=11323&avatarId=10011",
+        "32x32": "https://jira.com/jira/secure/projectavatar?size=medium&pid=11323&avatarId=10011"
+      }
+    },
+    "resolutiondate": null,
+    "watches": {
+      "self": "https://jira.com/jira/rest/api/2/issue/PIF-1813/watchers",
+      "watchCount": 0,
+      "isWatching": false
+    },
+    "customfield_10810": "1|hxxf5u:tfjf",
+    "updated": "2018-10-25T15:12:01.000+0200",
+    "timeoriginalestimate": null,
+    "description": null,
+    "timetracking": {},
+    "customfield_10806": "PIF-1598",
+    "summary": "Allow switching country configuration at runtime",
+    "customfield_12415": "WLS - single node | dual node\r\nLoxon - single node | dual node | none\r\nOSB - single node | dual node | none\r\nProxy - single node\r\nSSO - single node | dual node | none\r\nFTP - Y/N\r\nB2B - single node | dual node | none",
+    "environment": null,
+    "duedate": null,
+    "comment": {
+      "comments": [],
+      "maxResults": 0,
+      "total": 0,
+      "startAt": 0
+    },
+    "customfield_15002": null,
+    "fixVersions": [],
+    "priority": {
+      "self": "https://jira.com/jira/rest/api/2/priority/4",
+      "iconUrl": "https://jira.com/jira/images/icons/priorities/minor.svg",
+      "name": "Medium",
+      "id": "4"
+    },
+    "timeestimate": null,
+    "versions": [],
+    "status": {
+      "self": "https://jira.com/jira/rest/api/2/status/3",
+      "description": "This issue is being actively worked on at the moment by the assignee.",
+      "iconUrl": "https://jira.com/jira/images/icons/statuses/inprogress.png",
+      "name": "In Progress",
+      "id": "3",
+      "statusCategory": {
+        "self": "https://jira.com/jira/rest/api/2/statuscategory/4",
+        "id": 4,
+        "key": "indeterminate",
+        "colorName": "yellow",
+        "name": "In Progress"
+      }
+    },
+    "customfield_21101": "true",
+    "customfield_21100": [
+      "develop"
+    ],
+    "creator": {
+      "self": "https://jira.com/jira/rest/api/2/user?username=Some.One",
+      "name": "Some.One",
+      "key": "some",
+      "emailAddress": "some.one@mail.com",
+      "avatarUrls": {
+        "48x48": "https://jira.com/jira/secure/useravatar?avatarId=10232",
+        "24x24": "https://jira.com/jira/secure/useravatar?size=small&avatarId=10232",
+        "16x16": "https://jira.com/jira/secure/useravatar?size=xsmall&avatarId=10232",
+        "32x32": "https://jira.com/jira/secure/useravatar?size=medium&avatarId=10232"
+      },
+      "displayName": "One Some",
+      "active": true,
+      "timeZone": "Europe/Prague"
+    },
+    "aggregateprogress": {
+      "progress": 0,
+      "total": 0
+    },
+    "timespent": null,
+    "aggregatetimespent": null,
+    "workratio": -1,
+    "created": "2018-10-16T15:39:08.000+0200",
+    "customfield_13002": {
+      "self": "https://jira.com/jira/rest/api/2/customFieldOption/17321",
+      "value": "Create",
+      "id": "17321"
+    },
+    "attachment": [],
+    "customfield_16503": {
+      "self": "https://jira.com/jira/rest/api/2/customFieldOption/19925",
+      "value": "Full-Day",
+      "id": "19925"
+    },
+    "customfield_16502": {
+      "self": "https://jira.com/jira/rest/api/2/customFieldOption/19921",
+      "value": "Vacation",
+      "id": "19921"
+    }
+  }
+}
