@@ -6,8 +6,21 @@
 Reactive Jira client, based on reactor project and Spring WebClient
 
 ## Setup
-```java
-new ReactiveJiraClient("https://my.jira.net", "username", "password")
+
+```kotlin
+val client = ReactiveJiraClient("https://my.jira.net", "username", "password")
+
+client.getIssue("MY-123")
+```
+
+## Maven
+
+```xml
+<dependency>
+    <group>cz.encircled</group>
+    <artifact>reactive-jira-client</artifact>
+    <version>${jira.client.version}</version>    
+</dependency>
 ```
 
 ## Supported methods
