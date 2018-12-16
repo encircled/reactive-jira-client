@@ -5,12 +5,13 @@
 
     <groupId>cz.encircled</groupId>
     <artifactId>reactive-jira-client</artifactId>
-    <version>0.0.2-SNAPSHOT</version>
+    <version>0.0.3-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>reactive-jira-client</name>
     <description>Reactive Jira client</description>
 
+    <url>git@github.com:encircled/reactive-jira-client.git</url>
     <scm>
         <connection>scm:git:git@github.com:encircled/reactive-jira-client.git</connection>
         <url>git@github.com:encircled/reactive-jira-client.git</url>
