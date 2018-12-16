@@ -17,8 +17,8 @@ client.getIssue("MY-123")
 
 ```xml
 <dependency>
-    <group>cz.encircled</group>
-    <artifact>reactive-jira-client</artifact>
+    <groupId>cz.encircled</groupId>
+    <artifactId>reactive-jira-client</artifactId>
     <version>${jira.client.version}</version>    
 </dependency>
 ```
