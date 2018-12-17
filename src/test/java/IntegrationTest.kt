@@ -1,14 +1,14 @@
 import cz.encircled.jira.reactive.ReactiveJiraClient
 import cz.encircled.jira.reactive.model.*
-import reactor.test.StepVerifier
+import reactor.test.test
 import kotlin.test.Test
 
 class IntegrationTest {
 
     @Test
     fun testGetIssue() {
-        StepVerifier.create(
-                client().getIssue("TRANS-1305", listOf("status", "summary", "description", "issuelinks")))
+        client().getIssue("TRANS-1305", listOf("status", "summary", "description", "issuelinks"))
+                .test()
                 .expectNext(Issue("TRANS-1305", Fields(
                         summary = "Language Pack Upload Request",
                         description = null,
@@ -20,7 +20,7 @@ class IntegrationTest {
 
     @Test
     fun testGetFilter() {
-        StepVerifier.create(client().getFilter(12844))
+        client().getFilter(12844).test()
                 .expectNext(JiraFilter(
                         "project = 10240 AND issuetype = 1 ORDER BY key DESC",
                         "All JIRA Bugs"))
@@ -28,8 +28,22 @@ class IntegrationTest {
     }
 
     @Test
+    fun testGetMultipleIssues() {
+        client().getIssues(listOf("JRASERVER-68588", "JRASERVER-68585"), listOf("summary"))
+                .cache()
+                .collectList()
+                .test()
+                .expectNext(listOf(
+                        Issue("JRASERVER-68588", Fields(summary = "Jira incorrectly sorts options from Select List custom fields with multiple contexts")),
+                        Issue("JRASERVER-68585", Fields(summary = "Created and Resolved gadget interval is broken"))
+                ))
+                .verifyComplete()
+    }
+
+    @Test
     fun testSearchIssues() {
-        StepVerifier.create(client().searchIssues("project = 10240 AND issuetype = 1 ORDER BY key DESC", listOf("summary"), 2))
+        client().searchIssues("project = 10240 AND issuetype = 1 ORDER BY key DESC", listOf("summary"), 2)
+                .test()
                 .expectNext(SearchResult(listOf(
                         Issue("JRASERVER-68588", Fields(summary = "Jira incorrectly sorts options from Select List custom fields with multiple contexts")),
                         Issue("JRASERVER-68585", Fields(summary = "Created and Resolved gadget interval is broken"))

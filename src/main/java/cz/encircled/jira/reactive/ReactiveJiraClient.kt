@@ -39,6 +39,13 @@ class ReactiveJiraClient(
                 .bodyToMono(Issue::class.java)
     }
 
+    fun getIssues(keys: List<String>, includedFields: List<String> = listOf()): Flux<Issue> =
+            if (keys.isEmpty()) Flux.empty()
+            else searchIssues("key in (${keys.joinToString(",")})", includedFields, keys.size)
+                    .map(SearchResult::issues)
+                    .flatMapMany { it.toFlux() }
+
+
     fun getFilter(id: Int): Mono<JiraFilter> {
         return client.get()
                 .uri("/api/latest/filter/$id")

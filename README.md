@@ -26,6 +26,7 @@ client.getIssue("MY-123")
 ## Supported methods
 
 - getIssue
+- getIssues
 - getFilter
 - searchIssues
 - getActiveSprints
