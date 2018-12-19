@@ -34,7 +34,11 @@ class ReactiveJiraClient(
     fun getIssue(key: String, includedFields: List<String> = listOf()): Mono<Issue> {
         val fields = includedFields.joinToString(",")
         return client.get()
-                .uri("/api/latest/issue/$key?fields=$fields")
+                .uri {
+                    it.path("/api/latest/issue/{key}")
+                            .queryParam("fields", fields)
+                            .build(mapOf(Pair("key", key)))
+                }
                 .retrieve()
                 .bodyToMono(Issue::class.java)
     }

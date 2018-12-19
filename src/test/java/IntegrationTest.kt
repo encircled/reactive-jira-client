@@ -42,7 +42,7 @@ class IntegrationTest {
 
     @Test
     fun testSearchIssues() {
-        client().searchIssues("project = 10240 AND issuetype = 1 ORDER BY key DESC", listOf("summary"), 2)
+        client().searchIssues("key in (JRASERVER-68588, JRASERVER-68585)", listOf("summary"), 2)
                 .test()
                 .expectNext(SearchResult(listOf(
                         Issue("JRASERVER-68588", Fields(summary = "Jira incorrectly sorts options from Select List custom fields with multiple contexts")),
