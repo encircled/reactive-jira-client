@@ -1,8 +1,21 @@
+import cz.encircled.jira.reactive.ReactiveJiraClient
 import cz.encircled.jira.reactive.model.*
+import org.springframework.web.reactive.function.client.WebClientResponseException
 import reactor.test.test
 import kotlin.test.Test
 
 class BasicJiraTest : JiraTest {
+
+    @Test
+    fun testAuth() {
+        ReactiveJiraClient("https://jira.atlassian.com", "not", "exists")
+                .getIssue("XYZ-123")
+                .test()
+                .expectErrorMatches {
+                    it is WebClientResponseException && it.rawStatusCode == 401
+                }
+                .verify()
+    }
 
     @Test
     fun testGetIssue() {

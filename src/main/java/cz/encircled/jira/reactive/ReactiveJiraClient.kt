@@ -9,6 +9,8 @@ import reactor.core.publisher.toFlux
 
 /**
  * Jira client base class
+ *
+ * TODO wiremock testing
  */
 class ReactiveJiraClient(
         baseUrl: String,
