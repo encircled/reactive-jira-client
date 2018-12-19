@@ -1,9 +1,8 @@
-import cz.encircled.jira.reactive.ReactiveJiraClient
 import cz.encircled.jira.reactive.model.*
 import reactor.test.test
 import kotlin.test.Test
 
-class IntegrationTest {
+class BasicJiraTest : JiraTest {
 
     @Test
     fun testGetIssue() {
@@ -50,7 +49,5 @@ class IntegrationTest {
                 )))
                 .verifyComplete()
     }
-
-    private fun client() = ReactiveJiraClient("https://jira.atlassian.com", "", "")
 
 }
