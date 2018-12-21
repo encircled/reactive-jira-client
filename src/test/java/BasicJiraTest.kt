@@ -31,6 +31,14 @@ class BasicJiraTest : JiraTest {
     }
 
     @Test
+    fun testGetIssueNotFound() {
+        client().getIssue("TRANS-1305000", listOf("status", "summary", "description", "issuelinks"))
+                .test()
+                .expectError(WebClientResponseException.NotFound::class.java)
+                .verify()
+    }
+
+    @Test
     fun testGetFilter() {
         client().getFilter(12844).test()
                 .expectNext(JiraFilter(
