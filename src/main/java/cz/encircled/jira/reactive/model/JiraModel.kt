@@ -15,6 +15,8 @@ data class Fields(
         @JsonProperty("issuelinks")
         val issueLinks: List<IssueLink> = listOf(),
 
+        val labels: List<String> = listOf(),
+
         @JsonIgnore
         val custom: MutableMap<String, Any?> = mutableMapOf()
 ) {
