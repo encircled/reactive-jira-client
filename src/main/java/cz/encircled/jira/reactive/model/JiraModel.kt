@@ -12,6 +12,9 @@ data class Fields(
         val summary: String? = null,
         val status: Status? = null,
 
+        @JsonProperty("issuetype")
+        val issueType: IssueType? = null,
+
         @JsonProperty("issuelinks")
         val issueLinks: List<IssueLink> = listOf(),
 
@@ -31,6 +34,8 @@ data class Fields(
 data class JiraFilter(val jql: String, val name: String)
 
 data class IssueLink(val outwardIssue: Issue?, val inwardIssue: Issue?)
+
+data class IssueType(val name: String)
 
 data class Status(val name: String, val statusCategory: StatusCategory)
 
