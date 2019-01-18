@@ -18,6 +18,7 @@ data class Sprint(
 data class SprintIssue(
         val key: String,
         val summary: String,
+        val typeName: String,
         val status: Status,
         val epic: String?
 )
