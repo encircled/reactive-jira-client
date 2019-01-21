@@ -7,16 +7,34 @@ import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 import reactor.core.publisher.toFlux
 
+interface ReactiveJiraClient {
+
+    val defaultIssueFields: List<String>
+
+    fun getIssue(key: String, includedFields: List<String> = defaultIssueFields): Mono<Issue>
+
+    fun getIssues(keys: List<String>, includedFields: List<String> = defaultIssueFields): Flux<Issue>
+
+    fun getFilter(id: Int): Mono<JiraFilter>
+
+    fun searchIssues(jql: String, includedFields: List<String> = defaultIssueFields, maxResults: Int = 50): Mono<SearchResult>
+
+    fun getActiveSprints(rapidBoardId: Int): Flux<SprintReport>
+
+    fun getSprintReport(rapidBoardId: Int, sprintId: Int): Mono<SprintReport>
+}
+
+
 /**
  * Jira client base class
  *
  * TODO wiremock testing
  */
-class ReactiveJiraClient(
+class ReactiveJiraClientImpl(
         baseUrl: String,
         username: String = "",
         password: String = "",
-        private val defaultIssueFields: List<String> = listOf()) {
+        override val defaultIssueFields: List<String> = listOf()) : ReactiveJiraClient {
 
     private val aliasToCustomField: MutableMap<String, String> = mutableMapOf()
     private val customFieldToAlias: MutableMap<String, String> = mutableMapOf()
@@ -52,7 +70,7 @@ class ReactiveJiraClient(
      *
      * @param includedFields issue fields to be fetched, default is all. Default can be overriden during client creation
      */
-    public fun getIssue(key: String, includedFields: List<String> = defaultIssueFields): Mono<Issue> {
+    override fun getIssue(key: String, includedFields: List<String>): Mono<Issue> {
         val fields = buildIncludedFields(includedFields)
         return client.get()
                 .uri {
@@ -70,7 +88,7 @@ class ReactiveJiraClient(
      *
      * @param includedFields issue fields to be fetched, default is all. Default can be overriden during client creation
      */
-    public fun getIssues(keys: List<String>, includedFields: List<String> = defaultIssueFields): Flux<Issue> =
+    override fun getIssues(keys: List<String>, includedFields: List<String>): Flux<Issue> =
             if (keys.isEmpty()) Flux.empty()
             else searchIssues("key in (${buildIncludedFields(keys)})", includedFields, keys.size)
                     .map(SearchResult::issues)
@@ -80,7 +98,7 @@ class ReactiveJiraClient(
     /**
      * Fetch jira filter by id
      */
-    public fun getFilter(id: Int): Mono<JiraFilter> {
+    override fun getFilter(id: Int): Mono<JiraFilter> {
         return client.get()
                 .uri("/api/latest/filter/$id")
                 .retrieve()
@@ -94,7 +112,7 @@ class ReactiveJiraClient(
      * @param includedFields issue fields to be fetched, default is all. Default can be overriden during client creation
      * @param maxResults max result size
      */
-    public fun searchIssues(jql: String, includedFields: List<String> = defaultIssueFields, maxResults: Int = 50): Mono<SearchResult> {
+    override fun searchIssues(jql: String, includedFields: List<String>, maxResults: Int): Mono<SearchResult> {
         return client.get()
                 .uri {
                     it.path("/api/latest/search")
@@ -113,7 +131,7 @@ class ReactiveJiraClient(
      *
      * @param rapidBoardId id of target rapid view
      */
-    public fun getActiveSprints(rapidBoardId: Int): Flux<SprintReport> {
+    override fun getActiveSprints(rapidBoardId: Int): Flux<SprintReport> {
         return client.get()
                 .uri("/greenhopper/1.0/sprintquery/$rapidBoardId")
                 .retrieve()
@@ -134,7 +152,7 @@ class ReactiveJiraClient(
      * @param rapidBoardId id of target rapid view
      * @param sprintId id of target sprint
      */
-    public fun getSprintReport(rapidBoardId: Int, sprintId: Int): Mono<SprintReport> {
+    override fun getSprintReport(rapidBoardId: Int, sprintId: Int): Mono<SprintReport> {
         return client.get()
                 .uri("/greenhopper/1.0/rapid/charts/sprintreport?rapidViewId=$rapidBoardId&sprintId=$sprintId")
                 .retrieve()

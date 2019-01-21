@@ -1,4 +1,5 @@
 import cz.encircled.jira.reactive.ReactiveJiraClient
+import cz.encircled.jira.reactive.ReactiveJiraClientImpl
 import cz.encircled.jira.reactive.model.*
 import org.springframework.web.reactive.function.client.WebClientResponseException
 import reactor.test.test
@@ -8,7 +9,7 @@ class BasicJiraTest : JiraTest {
 
     @Test
     fun testAuth() {
-        ReactiveJiraClient("https://jira.atlassian.com", "not", "exists")
+        ReactiveJiraClientImpl("https://jira.atlassian.com", "not", "exists")
                 .getIssue("XYZ-123")
                 .test()
                 .expectErrorMatches {

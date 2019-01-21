@@ -1,9 +1,10 @@
 import cz.encircled.jira.reactive.ReactiveJiraClient
+import cz.encircled.jira.reactive.ReactiveJiraClientImpl
 
 interface JiraTest {
 
     fun client(defaultFields: List<String> = listOf()) =
-            ReactiveJiraClient("https://jira.atlassian.com",
+            ReactiveJiraClientImpl("https://jira.atlassian.com",
                     "",
                     "",
                     defaultFields)
