@@ -59,7 +59,7 @@ class ReactiveJiraClientImpl(
      * Add a meaningful alias for issue custom field, which can be used instead of "customfield_123"
      * in all methods ([getIssue], [searchIssues] etc) and in [Issue.fields]
      */
-    public fun customFieldAlias(customFieldName: String, alias: String): ReactiveJiraClient {
+    public fun customFieldAlias(customFieldName: String, alias: String): ReactiveJiraClientImpl {
         aliasToCustomField[alias] = customFieldName
         customFieldToAlias[customFieldName] = alias
         return this
