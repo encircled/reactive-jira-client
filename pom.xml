@@ -4,7 +4,7 @@
 
     <groupId>cz.encircled</groupId>
     <artifactId>reactive-jira-client</artifactId>
-    <version>0.0.11-SNAPSHOT</version>
+    <version>0.0.12-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>reactive-jira-client</name>
