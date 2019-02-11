@@ -41,6 +41,8 @@ data class Status(val name: String, val statusCategory: StatusCategory)
 
 data class StatusCategory(val key: String)
 
-data class SearchResult(val issues: List<Issue>) {
+data class SearchResult(val issues: List<Issue>, val errorMessages: String? = null) {
     var total: Long = 0
 }
+
+data class JiraError(val errorMessages: String?)

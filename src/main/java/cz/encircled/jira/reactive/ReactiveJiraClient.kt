@@ -1,11 +1,17 @@
 package cz.encircled.jira.reactive
 
+import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+import com.fasterxml.jackson.module.kotlin.readValue
 import cz.encircled.jira.reactive.model.*
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.util.Base64Utils
 import org.springframework.web.reactive.function.client.WebClient
+import org.springframework.web.reactive.function.client.WebClientResponseException
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 import reactor.core.publisher.toFlux
+import java.lang.Exception
 
 interface ReactiveJiraClient {
 
@@ -22,6 +28,12 @@ interface ReactiveJiraClient {
     fun getActiveSprints(rapidBoardId: Int): Flux<SprintReport>
 
     fun getSprintReport(rapidBoardId: Int, sprintId: Int): Mono<SprintReport>
+
+    /**
+     * If given exception is a Jira exception, translate it details to [JiraError] object
+     */
+    fun translateJiraError(exception: Throwable): JiraError?
+
 }
 
 
@@ -35,6 +47,9 @@ class ReactiveJiraClientImpl(
         username: String = "",
         password: String = "",
         override val defaultIssueFields: List<String> = listOf()) : ReactiveJiraClient {
+
+    @Autowired
+    private lateinit var objectMapper: ObjectMapper
 
     private val aliasToCustomField: MutableMap<String, String> = mutableMapOf()
     private val customFieldToAlias: MutableMap<String, String> = mutableMapOf()
@@ -157,6 +172,16 @@ class ReactiveJiraClientImpl(
                 .uri("/greenhopper/1.0/rapid/charts/sprintreport?rapidViewId=$rapidBoardId&sprintId=$sprintId")
                 .retrieve()
                 .bodyToMono(SprintReport::class.java)
+    }
+
+    override fun translateJiraError(exception: Throwable): JiraError? {
+        return if (exception is WebClientResponseException) {
+            try {
+                objectMapper.readValue<JiraError>(exception.responseBodyAsByteArray)
+            } catch (e: Exception) {
+                null
+            }
+        } else null
     }
 
     /**
