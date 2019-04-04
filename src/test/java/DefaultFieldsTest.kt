@@ -35,7 +35,7 @@ class DefaultFieldsTest : JiraTest {
         client(listOf("summary")).searchIssues("key in (JRASERVER-68588)")
                 .test()
                 .expectNext(SearchResult(listOf(
-                        Issue("JRASERVER-68588", Fields(summary = "Jira incorrectly sorts options from Select List custom fields with multiple contexts"))
+                        Issue("JRASERVER-68588", Fields(summary = "Jira incorrectly sorts options from Select List custom fields with multiple contexts in Two Dimensional Filter Statistics Gadget"))
                 )))
                 .verifyComplete()
     }

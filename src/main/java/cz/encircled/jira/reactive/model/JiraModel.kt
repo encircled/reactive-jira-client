@@ -33,7 +33,9 @@ data class Fields(
 
 data class JiraFilter(val jql: String, val name: String)
 
-data class IssueLink(val outwardIssue: Issue?, val inwardIssue: Issue?)
+data class IssueLink(val type: IssueLinkType, val outwardIssue: Issue?, val inwardIssue: Issue?)
+
+data class IssueLinkType(val name: String, val inward: String, val outward: String)
 
 data class IssueType(val name: String)
 

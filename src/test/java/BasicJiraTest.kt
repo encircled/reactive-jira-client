@@ -1,4 +1,3 @@
-import cz.encircled.jira.reactive.ReactiveJiraClient
 import cz.encircled.jira.reactive.ReactiveJiraClientImpl
 import cz.encircled.jira.reactive.model.*
 import org.springframework.web.reactive.function.client.WebClientResponseException
@@ -55,7 +54,7 @@ class BasicJiraTest : JiraTest {
                 .collectList()
                 .test()
                 .expectNext(listOf(
-                        Issue("JRASERVER-68588", Fields(summary = "Jira incorrectly sorts options from Select List custom fields with multiple contexts")),
+                        Issue("JRASERVER-68588", Fields(summary = "Jira incorrectly sorts options from Select List custom fields with multiple contexts in Two Dimensional Filter Statistics Gadget")),
                         Issue("JRASERVER-68585", Fields(summary = "Created and Resolved gadget interval is broken"))
                 ))
                 .verifyComplete()
@@ -66,7 +65,7 @@ class BasicJiraTest : JiraTest {
         client().searchIssues("key in (JRASERVER-68588, JRASERVER-68585)", listOf("summary"), 2)
                 .test()
                 .expectNext(SearchResult(listOf(
-                        Issue("JRASERVER-68588", Fields(summary = "Jira incorrectly sorts options from Select List custom fields with multiple contexts")),
+                        Issue("JRASERVER-68588", Fields(summary = "Jira incorrectly sorts options from Select List custom fields with multiple contexts in Two Dimensional Filter Statistics Gadget")),
                         Issue("JRASERVER-68585", Fields(summary = "Created and Resolved gadget interval is broken"))
                 )))
                 .verifyComplete()
