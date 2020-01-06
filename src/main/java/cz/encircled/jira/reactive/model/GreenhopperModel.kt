@@ -18,8 +18,10 @@ data class Sprint(
 data class SprintIssue(
         val key: String,
         val summary: String,
-        val typeName: String,
-        val status: Status,
+        var typeName: String? = null,
+        val typeId: String,
+        val statusId: String,
+        var statusName: String? = null,
         val epic: String?
 )
 
@@ -27,5 +29,16 @@ data class SprintContent(
         val completedIssues: List<SprintIssue>,
 
         @JsonProperty("issuesNotCompletedInCurrentSprint")
-        val notCompletedIssues: List<SprintIssue>
+        val notCompletedIssues: List<SprintIssue>,
+
+        val entityData: EntityData
 )
+
+data class EntityData(
+        val statuses: Map<String, GreenhopperStatus>,
+        val types: Map<String, GreenhopperType>
+)
+
+data class GreenhopperStatus(val statusName: String)
+
+data class GreenhopperType(val typeName: String)

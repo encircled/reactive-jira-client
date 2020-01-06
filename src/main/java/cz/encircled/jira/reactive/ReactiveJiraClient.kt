@@ -172,6 +172,18 @@ class ReactiveJiraClientImpl(
                 .uri("/greenhopper/1.0/rapid/charts/sprintreport?rapidViewId=$rapidBoardId&sprintId=$sprintId")
                 .retrieve()
                 .bodyToMono(SprintReport::class.java)
+                .map { s ->
+                    s.contents.completedIssues.forEach {
+                        it.typeName = s.contents.entityData.types[it.typeId]?.typeName
+                        it.statusName = s.contents.entityData.statuses[it.statusId]?.statusName
+                    }
+                    s.contents.notCompletedIssues.forEach {
+                        it.typeName = s.contents.entityData.types[it.typeId]?.typeName
+                        it.statusName = s.contents.entityData.statuses[it.statusId]?.statusName
+                    }
+
+                    s
+                }
     }
 
     override fun translateJiraError(exception: Throwable): JiraError? {
