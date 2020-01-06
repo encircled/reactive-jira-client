@@ -1,4 +1,3 @@
-import cz.encircled.jira.reactive.ReactiveJiraClient
 import cz.encircled.jira.reactive.ReactiveJiraClientImpl
 
 interface JiraTest {
