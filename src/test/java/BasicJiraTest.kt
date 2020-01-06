@@ -24,7 +24,7 @@ class BasicJiraTest : JiraTest {
                 .expectNext(Issue("TRANS-1305", Fields(
                         summary = "Language Pack Upload Request",
                         description = null,
-                        status = Status("Resolved", StatusCategory("done")),
+                        status = Status("Closed", StatusCategory("done")),
                         issueLinks = listOf()
                 )))
                 .verifyComplete()
